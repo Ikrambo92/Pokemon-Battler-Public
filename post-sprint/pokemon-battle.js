@@ -8,7 +8,8 @@ class Pokemon{
 }
 
 isEffectiveAgainst(pokemon){
-    return false
+   return false
+    
 }
 isWeakTo(pokemon){
     return false
@@ -79,23 +80,27 @@ class Water extends Pokemon{
     }
 }
 class Charmander extends Fire{
-    constructor(name, type, hitPoints, attackDamage){
-    super(name, type, hitPoints, attackDamage,"ember");
+    constructor( hitPoints, attackDamage){
+    super("charmander", "fire", hitPoints, attackDamage,"ember");
     
 } 
+
 }
+//test
+// const charmander = new Charmander(hitPoints,attackDamage)
+
 
 
 class Squirtle extends Water{
-    constructor(name, type, hitPoints, attackDamage){
-    super(name, type, hitPoints, attackDamage,"water gun");
+    constructor( hitPoints, attackDamage){
+    super("squirtle", "water", hitPoints, attackDamage,"water gun");
     
 } 
 }
 
 class Bulbasaur extends Grass{
-    constructor(name, type, hitPoints, attackDamage){
-    super(name, type, hitPoints, attackDamage,"vine whip");
+    constructor( hitPoints, attackDamage){
+    super("bulbasaur", "grass", hitPoints, attackDamage,"vine whip");
     
 } 
 }
@@ -108,16 +113,18 @@ class Rattata extends Pokemon{
 
 class Pokeballs{
     constructor(){
-        this.storage =0;
+        this.storage ={};
 
     }
 throw(pokemon){
-    if(this.isEmpty() === true){
+    if(this.isEmpty() === pokemon){
         console.log(`you caught the pokemon ${this.name}` )
     }else{
         console.log(`the pokeball is maxed out it has ${this.storage.name} inside it`)
     }
-
+if(pokemon === undefined && !this.isEmpty()){
+    console.log(`go ${this.storage.name}`)
+}
 }
 
 isEmpty(){
@@ -133,25 +140,27 @@ return "empty"
 }
 class Trainer {
     constructor(){
-        this.belt = [new Pokeballs, new Pokeballs, new Pokeballs, new Pokeballs, new Pokeballs, new Pokeballs]
+        this.belt = [new Pokeballs(), new Pokeballs(), new Pokeballs(), new Pokeballs(), new Pokeballs(), new Pokeballs()]
     }
 
 
 
 catch(pokemon){
-    for(const pokeball of this.belt){
+    for(let pokeball of this.belt){
         if(pokeball.isEmpty()){
             return pokeball.throw()
         }
     }
     console.log('all pokeballs are currently maxed out')
 
+}
+getPokemon(pokename){
+for(let pokeball of this.belt){
+if(pokeball.storage[0] === pokename){
+    return pokeball.throw()
+}
+ }
+
 }}
-// getPokemon(pokename){
-// for(const pokeball of this.belt){
 
-// }
-
-// }
-
-module.exports = {Pokemon, Pokeballs , Trainer}
+module.exports = {Pokemon, Pokeballs , Trainer, Fire, Water, Charmander, Grass, Squirtle, Bulbasaur, Rattata}
