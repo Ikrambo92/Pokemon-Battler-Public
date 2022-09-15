@@ -38,11 +38,30 @@ describe('Pokemon', () => {
     
             expect(testPokemon.isWeakTo(testPokemon2)).toBe(true)
     });
-    test.only('returns the passed pokemone if pokeball is empty ', () => {
+    test('returns the passed pokemone if pokeball is empty ', () => {
+        
         const testPokeball = new Pokeballs()
-        const testPokemon = new Pokemon("pika")
-        console.log(testPokeball.throw(testPokemon))
 
-        expect(testPokeball.storage).toEqual({})
+        const testPokemon = new Pokemon("pika","fire", 100, 30, "whip")
+        testPokeball.throw(testPokemon)
+        testPokeball.storage
+        expect(testPokeball.storage).toEqual(testPokemon)
     });
+    test('isEmpty() returns true if storage is empty ', () => {
+        
+        const testPokeball = new Pokeballs()
+
+        console.log(testPokeball.storage)
+        expect(testPokeball.isEmpty()).toBe(true)
+    });
+    // test.only('returns the passed pokemone if pokeball is empty ', () => {
+        
+    //     const testPokeball = new Pokeballs()
+
+    //     // expect(testPokeball.isEmpty()).toBe(true)
+    //     // console.log(expect(testPokeball.isEmpty()).toBe(true))
+    //     const testPokemon ={}
+    //     console.log(testPokemon)
+    //     expect(testPokeball.throw(testPokemon)).toBe(`you caught the pokemon `)
+    // });
 });

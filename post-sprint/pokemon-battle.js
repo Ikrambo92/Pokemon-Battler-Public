@@ -17,6 +17,11 @@ isWeakTo(pokemon){
 takeDamage(damageNum){
 this.hitPoints -= damageNum
 }
+
+useMove(){
+    console.log(`${this.name} used ${this.move}`)
+    return this.attackDamage
+}
 hasFainted(){
     if (this.hitPoints === 0){
         return true
@@ -113,11 +118,13 @@ class Rattata extends Pokemon{
 
 class Pokeballs{
     constructor(){
-        this.storage ={};
+        this.storage = {};
 
     }
 throw(pokemon){
-    if(this.isEmpty() === pokemon){
+    this.name = pokemon
+    this.storage 
+    if(this.isEmpty() === true){
         console.log(`you caught the pokemon ${this.name}` )
     }else{
         console.log(`the pokeball is maxed out it has ${this.storage.name} inside it`)
@@ -128,8 +135,12 @@ if(pokemon === undefined && !this.isEmpty()){
 }
 
 isEmpty(){
-    return this.storage === 0
-}
+    if (Object.keys(this.storage).length ===0){
+        return true
+    } 
+    return false
+    }
+
 contains(){
 if(!this.isEmpty()){
 return this.storage.name
@@ -156,11 +167,27 @@ catch(pokemon){
 }
 getPokemon(pokename){
 for(let pokeball of this.belt){
-if(pokeball.storage[0] === pokename){
+if(pokeball.storage.name === pokename){
     return pokeball.throw()
 }
  }
 
 }}
+
+class Battle{
+    constructor(trainer1, trainer2, pokemon1,pokemon2){
+        this.trainer1 = trainer1
+        this.trainer2 = trainer2
+        this.pokemon1 = pokemon1
+        this.pokemon2 = pokemon2
+}
+    fight(){
+        while (this.pokemon1.hitPoints > 0 && this.pokemon2.hitPoints > 0 ){
+            if(this.pokemon1.isEffectiveAgainst(this.pokemon2)){
+                this.pokemon2.takeDamage(this.pokemon1.useMove())
+            }
+        }
+    }
+}
 
 module.exports = {Pokemon, Pokeballs , Trainer, Fire, Water, Charmander, Grass, Squirtle, Bulbasaur, Rattata}
