@@ -194,10 +194,8 @@ class Battle{
                 this.pokemon2.takeDamage(this.pokemon1.useMove())
             }
             if (this.pokemon2.hasFainted()) {
-                console.log(`${this.pokemon2.name} got absolutely KO'd!`);
-                return console.log(this.pokemon1);
+                console.log(`${this.pokemon2.name} got absolutely KOed!`);
             }
-
 
             if (this.pokemon2.isEffectiveAgainst(this.pokemon1)) {
                 this.pokemon1.takeDamage(this.pokemon2.useMove() * 1.25);
@@ -210,11 +208,10 @@ class Battle{
                 this.pokemon1.takeDamage(this.pokemon2.useMove())
             }
             if (this.pokemon1.hasFainted()) {
-                console.log(`${this.pokemon1.name} got absolutely KO'd!`);
-                return console.log(this.pokemon2);
+                console.log(`${this.pokemon1.name} got absolutely KOed!`);
             }
         }
     }
 }
 
-module.exports = {Pokemon, Pokeballs , Trainer, Fire, Water, Charmander, Grass, Squirtle, Bulbasaur, Rattata}
+module.exports = {Pokemon, Pokeballs , Trainer, Fire, Water, Charmander, Grass, Squirtle, Bulbasaur, Rattata, Battle}

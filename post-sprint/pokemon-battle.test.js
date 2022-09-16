@@ -1,5 +1,5 @@
 const { expect } = require("expect");
-const {Pokemon, Pokeballs , Trainer, Fire, Water, Charmander, Grass, Squirtle, Bulbasaur, Rattata} = require("./pokemon-battle");
+const {Pokemon, Pokeballs , Trainer, Fire, Water, Charmander, Grass, Squirtle, Bulbasaur, Rattata, Battle} = require("./pokemon-battle");
 
 describe('Pokemon', () => {
     test('returns the pokeman name property', () => {
@@ -116,8 +116,16 @@ describe('Pokemon', () => {
         trainer.catch(testPokemon, testPokemon1, testPokemon2, testPokemon3, testPokemon4, testPokemon5)
         const result = trainer.catch(testPokemon6);
         expect(result).toBe("all pokeballs are currently maxed out");
-        
+        });
+
+        test('should return pokemon hitPoints less than 100', () => {
+            const trainer1 = new Trainer();
+            const trainer2 = new Trainer();
+            const charmander = new Charmander(100,10);
+            const squirtle = new Squirtle(100,10);
+            const battle = new Battle(trainer1, trainer2, charmander, squirtle);
+            battle.fight();
+            expect(charmander.hasFainted()).toBe(true);
+        });
+
     });
-
-
-});
