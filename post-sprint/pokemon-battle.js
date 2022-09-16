@@ -121,17 +121,17 @@ class Pokeballs{
         this.storage = {};
 
     }
-throw(pokemon){
-    this.name = pokemon
-    this.storage 
-    if(this.isEmpty() === true){
-        console.log(`you caught the pokemon ${this.name}` )
-    }else{
-        console.log(`the pokeball is maxed out it has ${this.storage.name} inside it`)
+throw(pokemon) {
+    if (this.isEmpty()) {
+        this.storage = pokemon;
+        console.log(pokemon);
+        console.log(this.storage, ">>>> tester")
+        console.log(pokemon.name, ">>>> pokemon tester");
+        return `You have caught ${pokemon.name}`;
     }
-if(pokemon === undefined && !this.isEmpty()){
-    console.log(`go ${this.storage.name}`)
-}
+    else {
+        return `the pokeball is maxed out it has ${this.storage.name} inside it`;
+    }
 }
 
 isEmpty(){
@@ -159,10 +159,10 @@ class Trainer {
 catch(pokemon){
     for(let pokeball of this.belt){
         if(pokeball.isEmpty()){
-            return pokeball.throw()
+            return pokeball.throw(pokemon)
         }
+        return 'all pokeballs are currently maxed out'
     }
-    console.log('all pokeballs are currently maxed out')
 
 }
 getPokemon(pokename){
@@ -170,7 +170,7 @@ for(let pokeball of this.belt){
 if(pokeball.storage.name === pokename){
     return pokeball.throw()
 }
- }
+}
 
 }}
 
@@ -181,10 +181,37 @@ class Battle{
         this.pokemon1 = pokemon1
         this.pokemon2 = pokemon2
 }
-    fight(){
-        while (this.pokemon1.hitPoints > 0 && this.pokemon2.hitPoints > 0 ){
-            if(this.pokemon1.isEffectiveAgainst(this.pokemon2)){
+    fight() {
+        while (this.pokemon1.hitPoints > 0 && this.pokemon2.hitPoints > 0) {
+            if (this.pokemon1.isEffectiveAgainst(this.pokemon2)) {
+                this.pokemon2.takeDamage(this.pokemon1.useMove() * 1.25);
+                console.log(`${this.pokemon1.name} used ${this.pokemon1.move} and the damage went in harddddd`);
+            }
+            else if (this.pokemon1.isWeakTo(this.pokemon2)) {
+                this.pokemon2.takeDamage(this.pokemon1.useMove() * 0.75);
+                console.log(`${this.pokemon1.name} went in soft :( )`);
+            } else {
                 this.pokemon2.takeDamage(this.pokemon1.useMove())
+            }
+            if (this.pokemon2.hasFainted()) {
+                console.log(`${this.pokemon2.name} got absolutely KO'd!`);
+                return console.log(this.pokemon1);
+            }
+
+
+            if (this.pokemon2.isEffectiveAgainst(this.pokemon1)) {
+                this.pokemon1.takeDamage(this.pokemon2.useMove() * 1.25);
+                console.log(`${this.pokemon2.name} used ${this.pokemon2.move} and the damage went in harddddd`);
+            }
+            else if (this.pokemon2.isWeakTo(this.pokemon1)) {
+                this.pokemon1.takeDamage(this.pokemon2.useMove() * 0.75);
+                console.log(`${this.pokemon2.name} went in soft :( )`);
+            } else {
+                this.pokemon1.takeDamage(this.pokemon2.useMove())
+            }
+            if (this.pokemon1.hasFainted()) {
+                console.log(`${this.pokemon1.name} got absolutely KO'd!`);
+                return console.log(this.pokemon2);
             }
         }
     }
