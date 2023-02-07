@@ -13,19 +13,19 @@ describe('Pokemon', () => {
     test('returns normal if the pokemon type property is not changed', () => {
         const testPokemon = new Pokemon()
 
-        console.log(testPokemon)
+        testPokemon
         expect(testPokemon.type).toBe("normal")
     });
     test('returns the pokemon type property', () => {
         const testPokemon = new Pokemon("", "fire")
 
-        console.log(testPokemon)
+        testPokemon
         expect(testPokemon.type).toBe("fire")
     });
     test('returns false when passed pokemon with type equal to normal', () => {
         const testPokemon = new Charmander (100, 20)
         const testPokemon2 = new Squirtle (100, 20)
-        console.log(testPokemon)
+        testPokemon
         //console.log(testPokemon2)
 
         expect(testPokemon.isEffectiveAgainst(testPokemon2)).toBe(false)
@@ -35,7 +35,6 @@ describe('Pokemon', () => {
             const testPokemon = new Charmander (100, 20)
             const testPokemon2 = new Squirtle (100, 20)
             testPokemon
-            //console.log(testPokemon2)
     
             expect(testPokemon.isWeakTo(testPokemon2)).toBe(true)
     });
@@ -44,7 +43,7 @@ describe('Pokemon', () => {
         
         const testPokeball = new Pokeballs()
         
-        console.log(testPokeball.storage)
+        testPokeball.storage
         expect(testPokeball.isEmpty()).toBe(true)
     });
 
@@ -53,9 +52,8 @@ describe('Pokemon', () => {
         const testPokeball = new Pokeballs()
 
         const testPokemon = new Pokemon("pika","fire", 100, 30, "whip")
-        console.log(testPokemon)
-        console.log(testPokeball)
-        console.log(testPokeball.throw(testPokemon))
+        testPokemon
+        testPokeball
         testPokeball.throw(testPokemon)
 
         expect(testPokeball.storage).toBe(testPokemon);
@@ -66,8 +64,8 @@ describe('Pokemon', () => {
         const testPokeball = new Pokeballs()
 
         const testPokemon = new Pokemon("pika","fire", 100, 30, "whip")
-        console.log(testPokemon)
-        console.log(testPokeball)
+        testPokemon
+        testPokeball
 
         expect(testPokeball.throw(testPokemon)).toBe('You have caught pika')
     });
@@ -77,8 +75,8 @@ describe('Pokemon', () => {
         const testPokeball = new Pokeballs()
 
         const testPokemon = new Pokemon("pika","fire", 100, 30, "whip")
-        console.log(testPokemon)
-        console.log(testPokeball)
+        testPokemon
+        testPokeball
         testPokeball.throw(testPokemon)
         
         expect(testPokeball.throw(testPokemon)).toBe(
@@ -118,7 +116,7 @@ describe('Pokemon', () => {
         expect(result).toBe("all pokeballs are currently maxed out");
         });
 
-        test('should return pokemon hitPoints less than 100', () => {
+        test('should return losing pokemon getting KOedddddd!!!', () => {
             const trainer1 = new Trainer();
             const trainer2 = new Trainer();
             const charmander = new Charmander(100,10);

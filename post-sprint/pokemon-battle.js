@@ -124,9 +124,6 @@ class Pokeballs{
 throw(pokemon) {
     if (this.isEmpty()) {
         this.storage = pokemon;
-        console.log(pokemon);
-        console.log(this.storage, ">>>> tester")
-        console.log(pokemon.name, ">>>> pokemon tester");
         return `You have caught ${pokemon.name}`;
     }
     else {
@@ -189,7 +186,7 @@ class Battle{
             }
             else if (this.pokemon1.isWeakTo(this.pokemon2)) {
                 this.pokemon2.takeDamage(this.pokemon1.useMove() * 0.75);
-                console.log(`${this.pokemon1.name} went in soft :( )`);
+                console.log(`${this.pokemon1.name} went in soft :(`);
             } else {
                 this.pokemon2.takeDamage(this.pokemon1.useMove())
             }
@@ -213,5 +210,7 @@ class Battle{
         }
     }
 }
+
+
 
 module.exports = {Pokemon, Pokeballs , Trainer, Fire, Water, Charmander, Grass, Squirtle, Bulbasaur, Rattata, Battle}
